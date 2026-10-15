@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f5ef" />
+    <meta name="description" content="A simple restaurant table reservation dashboard." />
+    <title>Restaurant Reservations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="Restaurant Reservations home">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span class="brand-copy">
+            <span class="brand-name">Restaurant Reservations</span>
+            <span class="brand-tagline">Hospitality made simple</span>
+          </span>
+        </a>
+        <div class="system-status"><span class="status-dot" aria-hidden="true"></span>Table management</div>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Welcome to your restaurant</p>
+            <h1 id="hero-title">Make every<br class="desktop-break" /> seat count.</h1>
+            <p class="hero-description">Reserve a table, keep track of guests, and avoid double bookings with a simple reservation dashboard.</p>
+            <div class="stats" aria-label="Live reservation statistics">
+              <div class="stat"><span class="stat-label">Available tables</span><strong id="available-count">5</strong></div>
+              <div class="stat"><span class="stat-label">Reserved tables</span><strong id="reserved-count">0</strong></div>
+              <div class="stat"><span class="stat-label">Guests max / table</span><strong>10</strong></div>
+            </div>
+          </div>
+          <div class="plate-art" aria-hidden="true">
+            <span class="plate-ring"></span><span class="plate-center"></span>
+            <span class="garnish garnish-one"></span><span class="garnish garnish-two"></span><span class="garnish garnish-three"></span>
+            <span class="leaf leaf-one"></span><span class="leaf leaf-two"></span>
+            <span class="plate-caption">Gather<br />around</span>
+          </div>
+          <span class="hero-sparkle sparkle-one" aria-hidden="true">✳</span>
+          <span class="hero-sparkle sparkle-two" aria-hidden="true">·</span>
+        </section>
+
+        <section class="workspace-grid" aria-label="Reservation workspace">
+          <article class="panel reservation-panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">Plan a visit</p><h2>Reserve a table</h2></div>
+              <span class="heading-icon" aria-hidden="true">↗</span>
+            </div>
+            <form id="reservation-form" novalidate>
+              <div class="field-group">
+                <label for="customer-name">Customer name</label>
+                <input id="customer-name" name="customerName" type="text" placeholder="e.g. Priya Sharma" autocomplete="name" maxlength="80" required />
+              </div>
+              <div class="form-row">
+                <div class="field-group">
+                  <label for="table-number">Choose a table</label>
+                  <select id="table-number" name="tableNumber" required>
+                    <option value="" disabled selected>Select table</option>
+                    <option value="T1">T1 · Available</option><option value="T2">T2 · Available</option><option value="T3">T3 · Available</option><option value="T4">T4 · Available</option><option value="T5">T5 · Available</option>
+                  </select>
+                </div>
+                <div class="field-group guests-field">
+                  <label for="guest-count">Number of guests</label>
+                  <input id="guest-count" name="guests" type="number" min="1" max="10" step="1" value="2" required />
+                </div>
+              </div>
+              <p class="field-hint">Guest count must be between 1 and 10.</p>
+              <button class="primary-button" type="submit">Confirm reservation <span aria-hidden="true">→</span></button>
+              <div id="form-feedback" class="feedback" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+            </form>
+            <div class="info-note"><span class="info-icon" aria-hidden="true">i</span><p>Each table can only be reserved once and stays unavailable until the reservation is cancelled.</p></div>
+          </article>
+
+          <article class="panel table-panel">
+            <div class="panel-heading table-heading">
+              <div><p class="eyebrow">At a glance</p><h2>Table status</h2></div>
+              <span class="table-total">05 tables</span>
+            </div>
+            <div class="legend" aria-label="Table status legend"><span><i class="legend-dot available-dot"></i>Available</span><span><i class="legend-dot reserved-dot"></i>Reserved</span></div>
+            <div id="table-grid" class="table-grid" aria-live="polite" aria-label="Current status of all tables"></div>
+            <div class="table-footnote"><span class="tiny-sun" aria-hidden="true">✳</span> A place for everyone at the table.</div>
+          </article>
+        </section>
+
+        <section class="panel bookings-panel" aria-labelledby="bookings-title">
+          <div class="panel-heading bookings-heading">
+            <div><p class="eyebrow">Tonight at a glance</p><h2 id="bookings-title">Current bookings</h2></div>
+            <span id="booking-count" class="booking-count">0 bookings</span>
+          </div>
+          <div class="booking-table-wrap">
+            <table>
+              <thead><tr><th scope="col">Table</th><th scope="col">Customer</th><th scope="col">Guests</th><th scope="col">Status</th><th scope="col" class="action-column">Action</th></tr></thead>
+              <tbody id="booking-list"></tbody>
+            </table>
+            <div id="empty-state" class="empty-state"><span class="empty-illustration" aria-hidden="true">♧</span><p>No reservations yet. Your confirmed bookings will appear here.</p></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer"><span class="footer-brand">Restaurant Reservations</span><span>Simple bookings. Better service.</span></footer>
+    </div>
+  </body>
+</html>
