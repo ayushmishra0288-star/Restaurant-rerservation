@@ -2,25 +2,6 @@
 
 A small, responsive restaurant table reservation dashboard built with HTML, CSS, and vanilla JavaScript. It keeps reservation data in memory for the current page session; refreshing the page resets all five tables to available.
 
-## Run locally
-
-1. Keep `index.html`, `styles.css`, and `app.js` together in the same folder.
-2. Open `index.html` in a modern browser, or open the folder in VS Code and start Live Server.
-
-Google Fonts are loaded from the web when available. The site remains usable offline with system font fallbacks.
-
-## Push to GitHub
-
-Create an empty repository on GitHub, then run these commands from this project folder (replace the URL with your repository URL):
-
-```bash
-git init
-git add index.html styles.css app.js README.md .gitignore
-git commit -m "Build restaurant reservations website"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
-git push -u origin main
-```
 
 ## Demonstration
 
